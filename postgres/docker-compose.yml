@@ -3,6 +3,8 @@ services:
   postgres:
     image: postgres:11.4
     container_name: postgres
+    volumes:
+      - /tmp/postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:
