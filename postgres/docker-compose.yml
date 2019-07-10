@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:11.4
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: twoflower
+      POSTGRES_DB: ank
+      POSTGRES_PASSWORD: mork 
+    networks:
+      - database
+
+networks:
+  database:
+    driver: bridge
