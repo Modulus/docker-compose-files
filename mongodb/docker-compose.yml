@@ -1,0 +1,28 @@
+# account is "SA"
+version: "3.7"
+services:
+  mongo:
+    image: mongo:3.4.21-xenial
+    container_name: mongo
+    ports:
+      - "27017:27017/tcp"
+    restart: always
+    volumes:
+      - /tmp/mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: passw0rd
+      MONGO_INITDB_DATABASE: data
+    networks:
+      - database
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - database
+      
+networks:
+  database:
+    driver: bridge

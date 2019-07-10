@@ -1,24 +1,23 @@
+# account is "SA"
 version: "3.7"
 services:
-  postgres:
-    image: postgres:11.4
-    container_name: postgres
-    volumes:
-      - /tmp/postgres_data:/var/lib/postgresql/data
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu 
+    container_name: mssql
     ports:
-      - "5432:5432"
+      - "1433:1433"
     restart: always
     environment:
-      POSTGRES_USER: twoflower
+      ACCEPT_EULA: Y
       POSTGRES_DB: ank
-      POSTGRES_PASSWORD: mork 
+      SA_PASSWORD: passw0rd 
     networks:
       - database
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - "8080:8080"
     networks:
       - database
       
